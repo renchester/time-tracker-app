@@ -1,0 +1,50 @@
+@use '@/styles/placeholders';
+@use '@/styles/mixins' as mx;
+
+.task-modal {
+  @include mx.center-self(horizontal, absolute);
+  max-height: 960px;
+
+  &__title {
+    @extend %feed-title;
+    margin-bottom: 1.65rem;
+  }
+
+  &__btn-close {
+    position: absolute;
+    right: var(--main-padding);
+    width: 20px;
+    height: 20px;
+    color: var(--color-accent-2);
+  }
+
+  &__form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  &__input {
+    padding: 0.5rem 0.75rem;
+    font-family: var(--font-inter);
+    font-size: var(--text-xs);
+
+    &.textarea {
+      resize: vertical;
+    }
+  }
+
+  &__btn-submit {
+    @extend %main-btn;
+    padding: 0.675rem 0.5rem;
+    background: var(--color-primary);
+    border-radius: var(--border-radius-full);
+    margin-bottom: 2.25rem;
+    color: var(--color-light-1);
+
+    &:disabled {
+      background: var(--color-grey-light-1);
+      color: var(--color-text-alpha75);
+    }
+  }
+}
