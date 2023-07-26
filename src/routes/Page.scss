@@ -1,0 +1,33 @@
+@use '@/styles/placeholders';
+
+.projects__list {
+  margin-top: 1rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+}
+
+.proj-det {
+  margin-top: var(--distance-top);
+
+  &__list {
+    margin-top: 1rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  &__item {
+    border: 2px solid currentColor;
+    padding: 1rem 2rem;
+    border-radius: var(--border-radius-2);
+    box-shadow: var(--box-shadow-light);
+    color: var(--color-accent-2);
+    font-family: var(--font-raleway);
+    font-weight: 600;
+  }
+
+  &__link {
+    display: inline-block;
+  }
+}
