@@ -1,12 +1,16 @@
 import { Outlet } from 'react-router-dom';
 import { AuthProvider } from '@/context/AuthContext';
 import { SnackbarProvider } from '@/context/SnackbarContext';
+import Sidebar from '@/components/Sidebar';
 
 function MainLayout() {
   return (
     <AuthProvider>
       <SnackbarProvider>
-        <Outlet />
+        <div className="main-layout">
+          <Sidebar />
+          <Outlet />
+        </div>
       </SnackbarProvider>
     </AuthProvider>
   );
