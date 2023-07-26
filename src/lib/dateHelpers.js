@@ -25,3 +25,7 @@ export const getTasksPerDay = (tasks, day) => {
 export const formatHours = (date) => {
   return format(new Date(date), 'hh:mmaa');
 };
+
+export const getTotalHours = (tasksArr) => {
+  return tasksArr.reduce((acc, curr) => acc + Number(curr.timeEstimate), 0);
+};
