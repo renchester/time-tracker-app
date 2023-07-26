@@ -8,9 +8,11 @@ import useNewTask from '@/hooks/useNewTask';
 function TaskListCard(props) {
   const { task } = props;
   const { user } = useAuth();
-  const { deleteTask } = useWorkspace();
+  const { users, deleteTask } = useWorkspace();
   const { showTaskModal } = useNewTask();
   const elementID = `list-card__${task.id}`;
+
+  const targetUser = users.find((user) => user.id === task.assignee);
 
   return (
     <article aria-labelledby={elementID} className="tk-item">
@@ -84,6 +86,12 @@ function TaskListCard(props) {
             <dd>{task.description}</dd>
           </div>
         )}
+        <div className="tk-item__detail">
+          <dt>Assignee:</dt>
+          <dd>
+            {targetUser.firstName} {targetUser.lastName}
+          </dd>
+        </div>
         <div className="tk-item__detail">
           <dt>Project:</dt>
           <dd>{task.project}</dd>
