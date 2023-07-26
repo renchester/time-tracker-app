@@ -37,3 +37,22 @@
   font-style: italic;
   color: var(--color-text-accent);
 }
+
+%main-section-title {
+  font-size: var(--text-lg);
+  font-family: var(--font-poppins);
+  font-weight: 500;
+  color: var(--color-accent-2);
+}
+
+%main-btn {
+  font-family: var(--font-poppins);
+  font-weight: 500;
+  letter-spacing: 0.1px;
+}
+
+%main-total {
+  font-family: var(--font-poppins);
+  font-weight: 600;
+  font-size: var(--text-sm);
+}
