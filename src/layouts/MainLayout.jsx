@@ -3,6 +3,7 @@ import { AuthProvider } from '@/context/AuthContext';
 import { SnackbarProvider } from '@/context/SnackbarContext';
 import Sidebar from '@/components/Sidebar';
 import { WorkspaceProvider } from '@/context/WorkspaceContext';
+import AddTaskButton from '@/components/factories/AddTaskButton';
 
 function MainLayout() {
   return (
@@ -12,6 +13,7 @@ function MainLayout() {
           <div className="main-layout">
             <Sidebar />
             <Outlet />
+            <AddTaskButton />
           </div>
         </SnackbarProvider>
       </WorkspaceProvider>
