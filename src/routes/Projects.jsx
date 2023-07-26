@@ -1,9 +1,12 @@
 import './Page.scss';
 import useAuth from '@/hooks/useAuth';
+import useWorkspace from '@/hooks/useWorkspace';
 import RedirectToLogin from '@/components/redirects/RedirectToLogin';
+import ProjectCard from '@/components/cards/ProjectCard';
 
 function Projects() {
   const { user } = useAuth();
+  const { projects } = useWorkspace();
 
   if (!user) return <RedirectToLogin />;
 
@@ -22,6 +25,12 @@ function Projects() {
             All Projects
           </h2>
           {/* List of Projects */}
+          <ul className="projects__list">
+            {projects.length > 0 &&
+              projects.map((proj) => (
+                <ProjectCard key={proj.id} project={proj} />
+              ))}
+          </ul>
         </section>
       </div>
     </main>
