@@ -24,7 +24,7 @@ function Home() {
             Your tasks for today
           </h2>
           {/* Panel for tasks */}
-          <OverviewPanel tasks={userTasks} />
+          <OverviewPanel tasks={userTasks} allowCreate />
         </section>
       </div>
     </main>
