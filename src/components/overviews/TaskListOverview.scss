@@ -1,0 +1,12 @@
+@use '@/styles/placeholders';
+
+.tkl {
+  &__total {
+    @extend %main-total;
+  }
+
+  &__empty {
+    @extend %main-subtitle;
+    margin-block: 1rem;
+  }
+}

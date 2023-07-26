@@ -17,7 +17,7 @@ function TaskListOverview(props) {
 
   return (
     <div className="tkl">
-      <p className="tkl__total">Total Hours: {totalHours}</p>
+      <p className="tkl__total">Total Hours: {totalHours}h</p>
       <ul className="tkl__list">
         {sortedTasks.length > 0 ? (
           sortedTasks.map((task) => (
@@ -26,7 +26,7 @@ function TaskListOverview(props) {
             </li>
           ))
         ) : (
-          <p>You do not have any tasks</p>
+          <p className="tkl__empty">There are currently no tasks</p>
         )}
       </ul>
     </div>
