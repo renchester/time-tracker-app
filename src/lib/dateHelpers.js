@@ -1,3 +1,5 @@
+import { format, isSameDay } from 'date-fns';
+
 export const getDateTimeString = (date) => {
   const target = new Date(date);
   target.setMinutes(target.getMinutes() - target.getTimezoneOffset());
@@ -14,4 +16,12 @@ export const getEndTime = (startTime, timeEstimate) => {
   const endTime = getTimeMilliseconds(startTime) + timeEstimateInMS;
 
   return endTime;
+};
+
+export const getTasksPerDay = (tasks, day) => {
+  return tasks.filter((task) => isSameDay(day, new Date(task.startTime)));
+};
+
+export const formatHours = (date) => {
+  return format(new Date(date), 'hh:mmaa');
 };
