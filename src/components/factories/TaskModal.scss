@@ -2,11 +2,21 @@
 @use '@/styles/mixins' as mx;
 
 .task-modal {
+  --main-padding: 2em;
+
   @include mx.center-self(horizontal, absolute);
   max-height: 960px;
+  overflow-y: auto;
+  bottom: 0;
+  background: var(--color-background);
+  padding: var(--main-padding);
+  width: min(800px, 95%);
+  border-top-left-radius: var(--border-radius-1);
+  border-top-right-radius: var(--border-radius-1);
+  box-shadow: var(--box-shadow-1);
 
   &__title {
-    @extend %feed-title;
+    @extend %main-title;
     margin-bottom: 1.65rem;
   }
 
@@ -24,6 +34,22 @@
     gap: 1.5rem;
   }
 
+  &__label {
+    display: flex;
+    flex-direction: column;
+
+    & span {
+      margin-bottom: 0.25rem;
+      font-family: var(--font-poppins);
+      font-size: var(--text-sm);
+    }
+
+    & small {
+      @extend %main-subtitle;
+      font-size: var(--text-xs);
+    }
+  }
+
   &__input {
     padding: 0.5rem 0.75rem;
     font-family: var(--font-inter);
@@ -37,10 +63,10 @@
   &__btn-submit {
     @extend %main-btn;
     padding: 0.675rem 0.5rem;
-    background: var(--color-primary);
-    border-radius: var(--border-radius-full);
-    margin-bottom: 2.25rem;
     color: var(--color-light-1);
+    border-radius: var(--border-radius-full);
+    background: var(--color-primary);
+    margin-bottom: 2.25rem;
 
     &:disabled {
       background: var(--color-grey-light-1);
