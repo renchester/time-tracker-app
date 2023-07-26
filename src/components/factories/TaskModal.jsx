@@ -12,7 +12,7 @@ import useNewTask from '@/hooks/useNewTask';
 import useAuth from '@/hooks/useAuth';
 import useSnackbar from '@/hooks/useSnackbar';
 
-function TaskModal({ type = 'create' }) {
+function TaskModal({ parentTask, type = 'create' }) {
   const { projects, tasks, setTasks } = useWorkspace();
   const { hideTaskModal } = useNewTask();
   const { user: currentUser } = useAuth();
@@ -27,12 +27,27 @@ function TaskModal({ type = 'create' }) {
     startTime: getDateTimeString(new Date()),
   };
 
-  const [newTask, setNewTask] = useState(initialState);
+  const existingTaskInitialState = parentTask && {
+    id: parentTask.id,
+    title: parentTask.title,
+    description: parentTask.description,
+    project: parentTask.project,
+    timeEstimate: parentTask.timeEstimate,
+    startTime: getDateTimeString(new Date(parentTask.startTime)),
+  };
+
+  const [newTask, setNewTask] = useState(
+    type === 'edit' && parentTask !== null
+      ? existingTaskInitialState
+      : initialState,
+  );
 
   const isButtonDisabled =
     !newTask.title ||
     !newTask.project ||
     !newTask.timeEstimate ||
+    newTask.timeEstimate <= 0 ||
+    newTask.timeEstimate > 12 ||
     !newTask.startTime;
 
   const handleChange = (e) => {
@@ -85,7 +100,9 @@ function TaskModal({ type = 'create' }) {
 
       // Display success message
       addAlert({
-        message: `Successfully created task`,
+        message: `Successfully ${
+          type === 'create' ? 'created' : 'edited'
+        } task`,
         status: 'success',
       });
 
@@ -123,7 +140,9 @@ function TaskModal({ type = 'create' }) {
         </svg>
       </button>
 
-      <h2 className="task-modal__title">Create Task</h2>
+      <h2 className="task-modal__title">
+        {type === 'create' ? 'Create' : 'Edit'} Task
+      </h2>
 
       <form action="" className="task-modal__form" onSubmit={handleSubmit}>
         <label htmlFor="new-task-title" className="task-modal__label">
@@ -201,7 +220,7 @@ function TaskModal({ type = 'create' }) {
             value={newTask.timeEstimate}
             onChange={handleChange}
             min={1}
-            max={8}
+            max={12}
             required
           />
         </label>
