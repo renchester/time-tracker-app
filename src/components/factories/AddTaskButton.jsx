@@ -1,6 +1,6 @@
 import './AddTaskButton.scss';
 import useAuth from '@/hooks/useAuth';
-import { useNewTask } from '@/hooks/useNewTask';
+import useNewTask from '@/hooks/useNewTask';
 
 function AddTaskButton() {
   const { showTaskModal } = useNewTask();
