@@ -1,0 +1,20 @@
+@use '@/styles/placeholders';
+@use '@/styles/maps' as maps;
+
+.add-task {
+  @extend %center-children;
+  height: 60px;
+  width: 60px;
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  z-index: map-get($map: maps.$zindex, $key: addTaskButton);
+  margin: 1.5rem;
+  background: var(--color-primary);
+  border-radius: var(--border-radius-full);
+  box-shadow: var(--box-shadow-strong);
+
+  font-size: var(--text-3xl);
+  font-weight: 600;
+  color: var(--color-light-1);
+}
