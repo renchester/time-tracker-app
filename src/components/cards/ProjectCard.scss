@@ -1,0 +1,29 @@
+@use '@/styles/placeholders';
+
+.proj-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  background: var(--color-background);
+  padding: 1rem;
+  height: 100%;
+  border: var(--border-emph);
+  border-radius: var(--border-radius-1);
+  box-shadow: var(--box-shadow-light);
+
+  &__container {
+    width: min(100%, 350px);
+    flex-shrink: 0;
+  }
+
+  &__title {
+    @extend %main-section-title;
+    color: var(--color-accent-1);
+    margin-bottom: 0.5rem;
+  }
+
+  &__details {
+    @extend %task-detail;
+    font-size: var(--text-xs);
+  }
+}
