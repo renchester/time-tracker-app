@@ -16,6 +16,9 @@ function Projects() {
         <h1 className="main-title" id="projects-title">
           Projects in your Workspace
         </h1>
+        <p className="main-subtitle">
+          Review the projects that you are working on
+        </p>
 
         <section
           className="main-section"

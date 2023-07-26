@@ -18,10 +18,13 @@ function Home() {
         <h1 className="main-title" id="home-title">
           Welcome back, {user.firstName}
         </h1>
+        <p className="main-subtitle">
+          Make sure to diligently review your tasks
+        </p>
 
         <section className="main-section" aria-labelledby="home-section__title">
           <h2 className="main-section__title" id="home-section__title">
-            Your tasks for today
+            Your tasks
           </h2>
           {/* Panel for tasks */}
           <OverviewPanel tasks={userTasks} allowCreate />
