@@ -1,9 +1,14 @@
 import './Page.scss';
 import useAuth from '@/hooks/useAuth';
+import useWorkspace from '@/hooks/useWorkspace';
 import RedirectToLogin from '@/components/redirects/RedirectToLogin';
+import OverviewPanel from '@/components/overviews/OverviewPanel';
 
 function Home() {
   const { user } = useAuth();
+  const { tasks } = useWorkspace();
+
+  const userTasks = tasks.filter((task) => task.assignee === user.id);
 
   if (!user) return <RedirectToLogin />;
 
@@ -19,6 +24,7 @@ function Home() {
             Your tasks for today
           </h2>
           {/* Panel for tasks */}
+          <OverviewPanel tasks={userTasks} />
         </section>
       </div>
     </main>
