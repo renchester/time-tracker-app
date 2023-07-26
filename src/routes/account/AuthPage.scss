@@ -1,0 +1,57 @@
+@use '@/styles/placeholders';
+@use '@/styles/mixins' as mx;
+
+.auth-page {
+  background: var(--color-background);
+  padding-top: var(--distance-top);
+  margin-inline: auto;
+
+  &__title {
+    @extend %main-title;
+    padding-top: 1.25rem;
+    text-align: center;
+  }
+
+  &__subtitle {
+    @extend %main-subtitle;
+    font-style: normal;
+    margin-top: 0.75rem;
+    text-align: center;
+
+    & a {
+      @extend %main-link;
+    }
+  }
+
+  &__form {
+    margin-inline: auto;
+    padding-block: var(--distance-top);
+    display: flex;
+    flex-direction: column;
+    gap: 2.75em;
+    width: min(100%, 600px);
+  }
+
+  &__btn {
+    padding: 1em 1.5em;
+    border-radius: var(--border-radius-full);
+    background: var(--color-primary);
+    box-shadow: var(--box-shadow-2);
+    color: var(--color-light-1);
+    font-weight: 600;
+
+    &:disabled {
+      color: var(--color-text-alpha75);
+      background: var(--color-text-alpha25);
+      cursor: not-allowed;
+    }
+  }
+
+  &__other {
+    text-align: center;
+
+    & a {
+      @extend %main-link;
+    }
+  }
+}
