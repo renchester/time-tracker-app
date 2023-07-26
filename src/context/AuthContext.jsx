@@ -1,4 +1,10 @@
-import { createContext, useEffect, useState } from 'react';
+import {
+  createContext,
+  useEffect,
+  useMemo,
+  useCallback,
+  useState,
+} from 'react';
 import PropTypes from 'prop-types';
 import { persistToStorage, removeFromStorage } from '@/lib/localStorage';
 
@@ -22,22 +28,22 @@ export const AuthProvider = (props) => {
     }
   };
 
-  const login = (loginUser) => {
+  const login = useCallback((loginUser) => {
     setUser(loginUser);
     persistToStorage('currentUser', loginUser);
-  };
+  }, []);
 
-  const logout = () => {
+  const logout = useCallback(() => {
     removeFromStorage('currentUser');
     setUser(null);
-  };
+  }, []);
 
   // Initialize user on first app load
   useEffect(() => {
     initializeAuth();
   }, []);
 
-  const value = { user, login, logout };
+  const value = useMemo(() => ({ user, login, logout }), [user, login, logout]);
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 };

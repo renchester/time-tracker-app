@@ -1,4 +1,4 @@
-import { createContext, useState } from 'react';
+import { createContext, useCallback, useMemo, useState } from 'react';
 import PropTypes from 'prop-types';
 import Overlay from '@/components/Overlay';
 import TaskModal from '@/components/factories/TaskModal';
@@ -12,7 +12,7 @@ export const NewTaskProvider = (props) => {
   const [isTaskModalShown, setTaskModalVisibility] = useState(false);
 
   // Makes the task modal visible globally
-  const showTaskModal = (existingTask) => {
+  const showTaskModal = useCallback((existingTask) => {
     if (existingTask) {
       setParentTask(existingTask);
     } else {
@@ -20,17 +20,19 @@ export const NewTaskProvider = (props) => {
     }
 
     setTaskModalVisibility(true);
-  };
+  }, []);
 
-  const hideTaskModal = () => {
+  const hideTaskModal = useCallback(() => {
     setTaskModalVisibility(false);
-  };
-
-  const value = {
-    isTaskModalShown,
-    showTaskModal,
-    hideTaskModal,
-  };
+  }, []);
+  const value = useMemo(
+    () => ({
+      isTaskModalShown,
+      showTaskModal,
+      hideTaskModal,
+    }),
+    [isTaskModalShown, showTaskModal, hideTaskModal],
+  );
 
   return (
     <NewTaskContext.Provider value={value}>

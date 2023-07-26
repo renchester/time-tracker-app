@@ -1,4 +1,10 @@
-import { createContext, useEffect, useState } from 'react';
+import {
+  createContext,
+  useEffect,
+  useCallback,
+  useMemo,
+  useState,
+} from 'react';
 import PropTypes from 'prop-types';
 import useAuth from '@/hooks/useAuth';
 import { initProjects } from '@/data/initialData';
@@ -6,7 +12,7 @@ import {
   fetchFromStorage,
   persistToStorage,
   removeFromStorage,
-} from '@/lib/persistToLocalStorage';
+} from '@/lib/localStorage';
 
 const WorkspaceContext = createContext(null);
 
@@ -18,9 +24,12 @@ export const WorkspaceProvider = (props) => {
   const [projects, setProjects] = useState([]);
   const [tasks, setTasks] = useState([]);
 
-  const deleteTask = (id) => {
-    setTasks(tasks.filter((task) => task.id !== id));
-  };
+  const deleteTask = useCallback(
+    (id) => {
+      setTasks(tasks.filter((task) => task.id !== id));
+    },
+    [tasks],
+  );
 
   const initializeWorkspace = () => {
     if (typeof window === 'undefined') return;
@@ -100,15 +109,18 @@ export const WorkspaceProvider = (props) => {
     persistToStorage('tasks', tasks);
   }, [tasks, currentUser]);
 
-  const value = {
-    users,
-    setUsers,
-    projects,
-    setProjects,
-    tasks,
-    setTasks,
-    deleteTask,
-  };
+  const value = useMemo(
+    () => ({
+      users,
+      setUsers,
+      projects,
+      setProjects,
+      tasks,
+      setTasks,
+      deleteTask,
+    }),
+    [users, projects, tasks, deleteTask],
+  );
 
   return (
     <WorkspaceContext.Provider value={value}>
