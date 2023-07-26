@@ -13,7 +13,7 @@ function DailyOverview(props) {
 
   // Sort tasks by startTime
   const sortedTasks = tasks.sort((a, b) => {
-    return a.title > b.title ? 1 : -1;
+    return a.startTime > b.startTime ? 1 : -1;
   });
 
   // Get total hours of tasks per day
