@@ -1,5 +1,6 @@
 import { createContext, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
+import { persistToStorage, removeFromStorage } from '@/lib/localStorage';
 
 const AuthContext = createContext(null);
 
@@ -10,6 +11,8 @@ export const AuthProvider = (props) => {
 
   // Persists user 'logged in' status when currentUser is found in local storage
   const initializeAuth = () => {
+    if (typeof window === 'undefined') return;
+
     const storedUser = window.localStorage.getItem('currentUser');
 
     if (storedUser) {
@@ -21,9 +24,11 @@ export const AuthProvider = (props) => {
 
   const login = (loginUser) => {
     setUser(loginUser);
+    persistToStorage('currentUser', loginUser);
   };
 
   const logout = () => {
+    removeFromStorage('currentUser');
     setUser(null);
   };
 
