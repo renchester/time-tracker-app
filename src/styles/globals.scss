@@ -65,9 +65,73 @@ table {
 
 //======  GLOBALLY APPLIED STYLES ======//
 
+body {
+  @include mx.breakpoint(md) {
+    --text-base-size: 0.9rem;
+  }
+}
+
 .app {
+  width: 100vw;
   font-family: var(--font-inter);
   font-size: var(--text-xs);
+}
+
+.main {
+  height: 100vh;
+  overflow-x: hidden;
+  overflow-y: auto;
+  flex-grow: 1;
+  padding-top: var(--distance-top);
+  display: flex;
+  flex-direction: column;
+  background: var(--color-background-accent);
+
+  @include mx.breakpoint(lg) {
+    height: auto;
+    background: var(--color-background);
+    padding-inline: 1rem;
+  }
+}
+
+.main-layout {
+  display: flex;
+  height: 100vh;
+
+  @include mx.breakpoint(lg) {
+    display: block;
+    overflow-x: hidden;
+  }
+}
+
+.main-wrapper {
+  width: min(calc(100vw - var(--sidebar-width)), var(--max-page-width));
+  padding-inline: 1rem;
+  margin-inline: auto;
+
+  @include mx.breakpoint(lg) {
+    width: 100vw;
+    max-width: none;
+    padding-inline: 0;
+  }
+}
+
+.main-title {
+  @extend %main-title;
+}
+
+.main-subtitle {
+  @extend %main-subtitle;
+  padding-top: 0.35rem;
+}
+
+.main-section {
+  margin-top: var(--distance-top);
+  width: 100%;
+}
+
+.main-section__title {
+  @extend %main-section-title;
 }
 
 h1 {
