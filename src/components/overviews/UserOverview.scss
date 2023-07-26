@@ -1,0 +1,33 @@
+@use '@/styles/placeholders';
+
+.user-ov {
+  margin-block: calc(var(--distance-top) * 1.25);
+
+  &__top {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: 0.25rem;
+    margin-bottom: 1.25rem;
+  }
+
+  &__avatar {
+    @extend %center-children;
+    border: var(--border-emph);
+    border-radius: var(--border-radius-full);
+    background: var(--color-accent-3);
+    box-shadow: var(--box-shadow-medium);
+    height: 26px;
+    width: 26px;
+    font-size: var(--text-sm);
+    font-weight: 700;
+    color: var(--color-light-1);
+  }
+
+  &__title {
+    font-size: var(--text-lg);
+    font-family: var(--font-quicksand);
+    font-weight: 700;
+    color: var(--color-accent-2);
+  }
+}
