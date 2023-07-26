@@ -78,10 +78,12 @@ function TaskListCard(props) {
       </div>
 
       <dl className="tk-item__list">
-        <div className="tk-item__detail">
-          <dt>Description:</dt>
-          <dd>{task.description}</dd>
-        </div>
+        {task.description && (
+          <div className="tk-item__detail">
+            <dt>Description:</dt>
+            <dd>{task.description}</dd>
+          </div>
+        )}
         <div className="tk-item__detail">
           <dt>Project:</dt>
           <dd>{task.project}</dd>
