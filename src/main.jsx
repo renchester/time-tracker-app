@@ -14,12 +14,16 @@ import Login from './routes/account/Login';
 import Home from './routes/Home';
 import Projects from './routes/Projects';
 import Workspace from './routes/Workspace';
+import ProjectDetails from './routes/ProjectDetails';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<MainLayout />}>
       <Route index element={<Home />} />
-      <Route path="projects" element={<Projects />} />
+      <Route path="projects">
+        <Route index element={<Projects />} />
+        <Route path=":slug" element={<ProjectDetails />} />
+      </Route>
       <Route path="workspace" element={<Workspace />} />
 
       <Route path="account">
