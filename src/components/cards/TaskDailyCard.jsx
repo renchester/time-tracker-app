@@ -8,11 +8,12 @@ import { formatHours } from '@/lib/dateHelpers';
 function TaskDailyCard(props) {
   const { task } = props;
   const { user: currentUser } = useAuth();
-  const { users, deleteTask } = useWorkspace();
+  const { users, projects, deleteTask } = useWorkspace();
   const { showTaskModal } = useNewTask();
   const elementID = `task-card__${task.id}`;
 
   const targetUser = users.find((user) => user.id === task.assignee);
+  const targetProject = projects.find((proj) => proj.title === task.project);
 
   return (
     <article
@@ -22,6 +23,7 @@ function TaskDailyCard(props) {
         minHeight: '160px',
         height: `${task.timeEstimate * 6}rem`,
         maxHeight: '500px',
+        borderColor: targetProject.color,
       }}
     >
       <div className="task-card__top">
