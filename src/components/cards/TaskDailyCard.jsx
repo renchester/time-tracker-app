@@ -19,7 +19,8 @@ function TaskDailyCard(props) {
       className="task-card"
       aria-labelledby={elementID}
       style={{
-        height: `${task.timeEstimate * 10}rem`,
+        minHeight: '160px',
+        height: `${task.timeEstimate * 6}rem`,
         maxHeight: '500px',
       }}
     >
