@@ -40,9 +40,26 @@
     padding-block: 0.85rem;
     opacity: 0.75;
 
+    & span {
+      display: block;
+      font-family: var(--font-poppins);
+      font-weight: 600;
+      color: var(--color-accent-2);
+    }
+
     &.active {
       box-shadow: 4px 0px 0px 0px var(--color-accent-2);
       opacity: 1;
+    }
+  }
+
+  &__icon {
+    height: 20px;
+    width: 20px;
+    color: var(--color-accent-2);
+
+    @include mx.breakpoint(lg) {
+      display: none;
     }
   }
 }
