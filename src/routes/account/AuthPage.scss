@@ -6,6 +6,10 @@
   padding-top: var(--distance-top);
   margin-inline: auto;
 
+  @include mx.breakpoint(lg) {
+    padding-inline: 1rem;
+  }
+
   &__title {
     @extend %main-title;
     padding-top: 1.25rem;

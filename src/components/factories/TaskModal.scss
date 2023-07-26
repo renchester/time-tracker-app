@@ -51,9 +51,17 @@
   }
 
   &__input {
+    margin-top: 0.15rem;
     padding: 0.5rem 0.75rem;
     font-family: var(--font-inter);
-    font-size: var(--text-xs);
+    font-size: var(--text-sm);
+    background: transparent;
+    border: var(--border-emph);
+    border-radius: var(--border-radius-2);
+
+    &[type='number'] {
+      width: fit-content;
+    }
 
     &.textarea {
       resize: vertical;

@@ -51,10 +51,16 @@
 
   &__btn-container {
     display: flex;
-    gap: 0.25rem;
+    gap: 0.5rem;
 
     & button {
+      color: var(--color-text-accent);
       border-radius: var(--border-radius-full);
+
+      &:hover,
+      &:focus {
+        color: var(--color-primary);
+      }
     }
 
     & svg {
