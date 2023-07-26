@@ -8,12 +8,13 @@ import {
   createBrowserRouter,
   createRoutesFromElements,
 } from 'react-router-dom';
+import MainLayout from './layouts/MainLayout';
 import Signup from './routes/account/Signup';
 import Login from './routes/account/Login';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
-    <Route path="/">
+    <Route path="/" element={<MainLayout />}>
       <Route path="account">
         <Route index element={<div>Account</div>} />
         <Route path="signup" element={<Signup />} />
