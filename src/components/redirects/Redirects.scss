@@ -1,0 +1,8 @@
+@use '@/styles/placeholders';
+
+.redirect {
+  @extend %main-title;
+  padding-top: var(--distance-top);
+  text-align: center;
+  font-size: var(--text-md);
+}
