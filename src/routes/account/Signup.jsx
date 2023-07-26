@@ -1,12 +1,19 @@
 import './AuthPage.scss';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { nanoid } from 'nanoid';
 import debounce from 'lodash.debounce';
 import AuthInput from '@/components/input/AuthInput';
 import { validateEmail, validatePassword } from '@/lib/validators';
+import RedirectToHome from '@/components/redirects/RedirectToHome';
+import useAuth from '@/hooks/useAuth';
+import useSnackbar from '@/hooks/useSnackbar';
+import { fetchFromStorage, persistToStorage } from '@/lib/localStorage';
 
 function Signup() {
   const DEBOUNCE_TIME = 600;
+  const { user, login } = useAuth();
+  const { addAlert } = useSnackbar();
 
   const [name, setName] = useState({
     firstName: '',
@@ -116,6 +123,42 @@ function Signup() {
     }
   }, DEBOUNCE_TIME);
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    try {
+      // Create new user
+      const newUser = {
+        id: `user__${nanoid(10)}`,
+        email,
+        password,
+        firstName: name.firstName,
+        lastName: name.lastName,
+      };
+      const usersStore = fetchFromStorage('users');
+
+      const userList = [...usersStore, newUser];
+
+      // Set list of users to local storage
+      persistToStorage('users', userList);
+
+      // Display success message
+      addAlert({
+        message: 'Successfully registered user, redirecting to home page',
+        status: 'success',
+      });
+
+      // Log new user in
+      login(newUser);
+    } catch (error) {
+      // Display error message in a snackbar
+      addAlert({
+        message: 'Unable to register new user',
+        status: 'error',
+      });
+    }
+  };
+
   // Sets the form button disabled status
   const isButtonDisabled = !(
     name.firstName.length > 0 &&
@@ -124,6 +167,8 @@ function Signup() {
     passwordStatus.isValid &&
     confirmationStatus.isMatch
   );
+
+  if (user) return <RedirectToHome />;
 
   return (
     <main className="auth-page" aria-labelledby="signup-page__title">
@@ -135,7 +180,7 @@ function Signup() {
         <Link to={'#'}>Privacy Policy</Link>
       </p>
 
-      <form action="" className="auth-page__form">
+      <form action="" className="auth-page__form" onSubmit={handleSubmit}>
         <AuthInput
           id="signup_first-name"
           type="text"

@@ -4,9 +4,15 @@ import { Link } from 'react-router-dom';
 import debounce from 'lodash.debounce';
 import { validateEmail, validatePassword } from '@/lib/validators';
 import AuthInput from '@/components/input/AuthInput';
+import useAuth from '@/hooks/useAuth';
+import useSnackbar from '@/hooks/useSnackbar';
+import { fetchFromStorage } from '@/lib/localStorage';
+import RedirectToHome from '@/components/redirects/RedirectToHome';
 
 function Login() {
   const DEBOUNCE_TIME = 600;
+  const { user, login } = useAuth();
+  const { addAlert } = useSnackbar();
 
   const [email, setEmail] = useState('');
   const [emailStatus, setEmailStatus] = useState({
@@ -60,6 +66,40 @@ function Login() {
     }
   }, DEBOUNCE_TIME);
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    try {
+      const users = fetchFromStorage('users');
+
+      if (!users) throw new Error('Unable to log in');
+
+      const targetUser = users.find(
+        (user) => user.email === email && user.password === password,
+      );
+
+      if (targetUser) {
+        // Display success message in a snackbar
+        addAlert({
+          message: 'Successfully logged in, redirecting to home page',
+          status: 'success',
+        });
+
+        login(targetUser);
+      } else throw new Error('Unable to find user');
+    } catch (error) {
+      // Display error message in a snackbar
+      addAlert({
+        message: error.message,
+        status: 'error',
+      });
+    }
+  };
+
+  const isButtonDisabled = !(emailStatus.isValid && passwordStatus.isValid);
+
+  if (user) return <RedirectToHome />;
+
   return (
     <main className="auth-page" aria-labelledby="login-page__title">
       <h1 className="auth-page__title" id="login-page__title">
@@ -69,7 +109,7 @@ function Login() {
         Enter your email and password to sign in
       </p>
 
-      <form action="" className="auth-page__form">
+      <form action="" className="auth-page__form" onSubmit={handleSubmit}>
         <AuthInput
           id="login_email"
           type="email"
@@ -94,7 +134,11 @@ function Login() {
           isRequired
         />
 
-        <button type="submit" className="auth-page__btn">
+        <button
+          type="submit"
+          className="auth-page__btn"
+          disabled={isButtonDisabled}
+        >
           Log in
         </button>
       </form>
@@ -106,4 +150,5 @@ function Login() {
     </main>
   );
 }
+
 export default Login;
