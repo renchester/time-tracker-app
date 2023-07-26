@@ -56,3 +56,21 @@
   font-weight: 600;
   font-size: var(--text-sm);
 }
+
+// Task Placeholders
+%task-title {
+  font-size: var(--text-md);
+  font-family: var(--font-quicksand);
+  font-weight: 700;
+}
+
+%task-description {
+  font-style: italic;
+  font-size: var(--text-xs);
+  color: var(--color-text-accent);
+}
+
+%task-detail {
+  font-size: var(--text-2xs);
+  color: var(--color-accent-1);
+}
