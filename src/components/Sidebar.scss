@@ -10,6 +10,19 @@
   box-shadow: var(--box-shadow-light);
   border-right: var(--border-emph);
 
+  @include mx.breakpoint(lg) {
+    position: sticky;
+    top: 0;
+    z-index: map-get($map: maps.$zindex, $key: header);
+    width: 100%;
+    height: fit-content;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-block: 0rem;
+    padding-inline: 1rem;
+  }
+
   &__logo {
     margin-bottom: var(--distance-top);
     font-family: var(--font-quicksand);
@@ -19,6 +32,11 @@
 
     & strong {
       font-weight: 700;
+    }
+
+    @include mx.breakpoint(lg) {
+      margin-bottom: 0;
+      font-size: var(--text-xl);
     }
   }
 }
@@ -30,6 +48,14 @@
     display: flex;
     flex-direction: column;
     gap: 1.5rem;
+
+    @include mx.breakpoint(lg) {
+      flex-direction: row;
+    }
+
+    @include mx.breakpoint(sm) {
+      gap: 0.5rem;
+    }
   }
 
   &__link {
@@ -39,6 +65,11 @@
     gap: 1.25rem;
     padding-block: 0.85rem;
     opacity: 0.75;
+
+    @include mx.breakpoint(lg) {
+      padding-block: 1.5rem;
+      height: 100%;
+    }
 
     & span {
       display: block;
@@ -50,6 +81,10 @@
     &.active {
       box-shadow: 4px 0px 0px 0px var(--color-accent-2);
       opacity: 1;
+
+      @include mx.breakpoint(lg) {
+        box-shadow: 0px 4px 0px 0px var(--color-accent-2);
+      }
     }
   }
 
