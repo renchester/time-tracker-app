@@ -1,4 +1,4 @@
-import './Auth-Input.scss';
+import './AuthInput.scss';
 import PropTypes from 'prop-types';
 
 function AuthInput(props) {
