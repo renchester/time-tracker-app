@@ -12,14 +12,15 @@ In order to setup and work on this project on your own, you will need to:
 2. Go to the folder/directory where you cloned the project and type the following into the CLI to install the required dependencies:\
    `npm install`
 
-3. Distribution files can be produced using:\
+3. After installing dependencies, the distribution files can be produced using:\
    `npm run build`
 
-4. A live demo of the project can be started by using:\
+4. Finally, a live demo of the project can be started by using:\
    `npm run preview`
 
-5. _Alternatively_, you can go into development mode after installing the dependencies(#2) by typing:\
-   `npm run dev`
+5. Go to `http://localhost:4173/` to test the app out
+
+6. _Alternatively_, you can go into development mode after installing the dependencies(#2) by typing `npm run dev` and following the instructions on the terminal
 
 ## Rationale
 
