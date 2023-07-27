@@ -15,10 +15,11 @@ import Home from './routes/Home';
 import Projects from './routes/Projects';
 import Workspace from './routes/Workspace';
 import ProjectDetails from './routes/ProjectDetails';
+import RedirectError from './components/redirects/RedirectError';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
-    <Route path="/" element={<MainLayout />}>
+    <Route path="/" element={<MainLayout />} errorElement={<RedirectError />}>
       <Route index element={<Home />} />
       <Route path="projects">
         <Route index element={<Projects />} />
