@@ -1,8 +1,30 @@
-# React + Vite
+# TimePieces
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+TimePieces is an app that allows you to input and view your tasks for the week to help with your productivity.
 
-Currently, two official plugins are available:
+## Installation
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+In order to setup and work on this project on your own, you will need to:
+
+1. Clone this project using:\
+   `git clone https://github.com/renchester/time-tracker-app.git`
+
+2. Go to the folder/directory where you cloned the project and type the following into the CLI to install the required dependencies:\
+   `npm install`
+
+3. Distribution files can be produced using:\
+   `npm run build`
+
+4. A live demo of the project can be started by using:\
+   `npm run preview`
+
+5. _Alternatively_, you can go into development mode after installing the dependencies(#2) by typing:\
+   `npm run dev`
+
+## Rationale
+
+In the creation of this project, I was inspired by the idea of being able to display your data in multiple ways--much like how certain productivity apps give you the option to view your data in kanban-style view, calendar view, and many others. For this time-tracker app, initially I wanted to create multiple views but due to the time constraint, I limited the way one is able to see the tasks to a weekly overview as well as a list view. These views are wrapped inside a reusable panel which allows you to toggle between the two.
+
+The app has three main routes: Home, Projects, and Workspace/Company. All three routes make use of the overview panel to view tasks. In the Home route, you are able to see the tasks that you have for the week. The Projects route provides an overview of the tasks divided per project. Lastly, the Workspace route allows you to view all the tasks that everyone is doing.
+
+In order to address the ease of input, a button to add tasks is shown globally at the bottom right which allows one to access the modal to create a task. Buttons are also provided in the overview panels in order to fulfill the same role. When creating a task, the starting time is automatically set to the present date to make inputs easier and faster.
