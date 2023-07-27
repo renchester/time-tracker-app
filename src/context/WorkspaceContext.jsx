@@ -7,7 +7,7 @@ import {
 } from 'react';
 import PropTypes from 'prop-types';
 import useAuth from '@/hooks/useAuth';
-import { initProjects, initUsers, initTasks } from '@/data/initialData';
+import { initProjects } from '@/data/initialData';
 import {
   fetchFromStorage,
   persistToStorage,
@@ -40,7 +40,7 @@ export const WorkspaceProvider = (props) => {
     if (storedUsers.length > 0) {
       setUsers(storedUsers);
     } else {
-      setUsers(initUsers);
+      setUsers([]);
     }
 
     // Initialize Projects
@@ -58,7 +58,7 @@ export const WorkspaceProvider = (props) => {
     if (storedTasks.length > 0) {
       setTasks(storedTasks);
     } else {
-      setTasks(initTasks);
+      setTasks([]);
     }
   };
 
