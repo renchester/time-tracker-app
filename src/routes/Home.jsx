@@ -8,9 +8,9 @@ function Home() {
   const { user } = useAuth();
   const { tasks } = useWorkspace();
 
-  const userTasks = tasks.filter((task) => task.assignee === user.id);
-
   if (!user) return <RedirectToLogin />;
+
+  const userTasks = tasks.filter((task) => task.assignee === user.id);
 
   return (
     <main className="main" aria-labelledby="home-title">

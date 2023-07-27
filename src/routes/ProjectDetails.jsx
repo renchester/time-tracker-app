@@ -13,13 +13,14 @@ function ProjectDetails() {
 
   // Find the project based on url slug params
   const targetProject = projects.find((proj) => proj.slug === slug);
-  const tasksByProject = tasks.filter(
-    (task) => task.project === targetProject.title,
-  );
 
   if (!user) return <RedirectToLogin />;
 
   if (!targetProject) return null;
+
+  const tasksByProject = tasks.filter(
+    (task) => task.project === targetProject.title,
+  );
 
   return (
     <main className="main">
