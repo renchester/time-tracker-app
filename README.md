@@ -1,6 +1,6 @@
 # TimePieces
 
-TimePieces is an app that allows you to input and view your tasks for the week to help with your productivity.
+TimePieces is a small app that allows you to input and view your tasks for the week to help with your productivity. Built with Vite + React.
 
 ## Installation
 
@@ -29,3 +29,12 @@ In the creation of this project, I was inspired by the idea of being able to dis
 The app has three main routes: Home, Projects, and Workspace/Company. All three routes make use of the overview panel to view tasks. In the Home route, you are able to see the tasks that you have for the week. The Projects route provides an overview of the tasks divided per project. Lastly, the Workspace route allows you to view all the tasks that everyone is doing.
 
 In order to address the ease of input, a button to add tasks is shown globally at the bottom right which allows one to access the modal to create a task. Buttons are also provided in the overview panels in order to fulfill the same role. When creating a task, the starting time is automatically set to the present date to make inputs easier and faster.
+
+## To-do
+
+1. Add a kanban-style view as well as a Gantt chart-style view for the tasks
+2. Create a backend to store data
+
+## View
+
+![Weekly view](img/home-view.png)
