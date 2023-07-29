@@ -17,25 +17,12 @@ function Overlay(props) {
     return () => window.removeEventListener('keydown', escKeyListener);
   }, [hideChildren]);
 
-  const handleClick = (e) => {
-    e.preventDefault();
-
-    // Only run event when actual overlay is clicked
-    if (e.target === e.currentTarget) {
-      hideChildren();
-    }
-  };
-
-  return (
-    <div className="overlay" onClickCapture={handleClick}>
-      {children}
-    </div>
-  );
+  return <div className="overlay">{children}</div>;
 }
 
 Overlay.propTypes = {
   children: PropTypes.element.isRequired,
-  hideChildren: PropTypes.func.isRequired,
+  hideChildren: PropTypes.func,
 };
 
 export default Overlay;
