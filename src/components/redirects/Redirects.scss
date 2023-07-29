@@ -2,7 +2,8 @@
 
 .redirect {
   @extend %main-title;
-  padding-top: var(--distance-top);
+  width: 100%;
+  padding-top: calc(var(--distance-top) * 2);
   text-align: center;
   font-size: var(--text-md);
 }
